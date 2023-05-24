@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<section class="register-block" style="background-image: url(https://images.pexels.com/photos/807598/pexels-photo-807598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)">
+  <div class="container d-flex justify-content-center">
+     <div class="row">
+        <div class="col register-sec">
+           <h2 class="text-center" style="color: rgb(246, 240, 240);">REGISTER NOW</h2>
+           <form
+            class="register-form"
+            action=""
+            #f="ngForm"
+            novalidate
+            (ngSubmit)="f.form.valid&&onSubmit()"
+            >
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" placeholder="Name" class="form-control" name="name" id="" [(ngModel)]="formdata.name" #name="ngModel" required>
+              <span class="text-danger" *ngIf="this.submit&&name.errors?.['required']">
+                  Name is required.
+              </span>
+           </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input type="text"placeholder="Email" class="form-control" name="email" id="" [(ngModel)]="formdata.email" #email="ngModel" required>
+              <span class="text-danger" *ngIf="this.submit&&email.errors?.['required']">
+                  Email is required.
+              </span>
+           </div>
+           <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input class="form-control"placeholder="Password" type="password" name="password" id="" [(ngModel)]="formdata.password" #password="ngModel" required minlength="8">
+              <span class="text-danger" *ngIf="this.submit&&password.errors?.['required']">
+                  Password is required.
+              </span>
+              <span class="text-danger" *ngIf="this.submit&&password.errors?.['minlength']">
+                Minimum length of password is 8 characters
+            </span>
+           </div>
+           <div class="form-group">
+              <span class="text-danger" *ngIf="this.errorMessage">
+                 <p [innerText]="this.errorMessage"></p>
+              </span>
+              <div class="text-center" *ngIf="this.loading">
+                <div class="spinner-grow" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <input type="submit" class="btn btn-login float-right" style="color: black;background-color: #55c2da;" value="Register" (click)="submit=true" [disabled]="this.loading">
+           </div>
+           <div class="clearfix"></div>
+           <div class="form-group">
+              Already have an account? Please <a href="javascript:void(0);" routerLink="/login" style="color: rgb(245, 41, 14);">Login</a>
+           </div>
+         </form>
+        </div>
+     </div>
+  </div>
+</section>
